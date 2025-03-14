@@ -20,7 +20,7 @@ class Parser:
         cron_fields = parts[:5]
         self.command = " ".join(parts[5:])
 
-        # Expand each field and print debug info
+        # Expand each field
         for i, field in enumerate(cron_fields):
             try:
                 expanded = expand_field(field, FIELD_NAMES[i])
