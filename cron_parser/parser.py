@@ -1,12 +1,10 @@
-# cron_parser.py
-
 from cron_parser.utils import expand_field
 from cron_parser.constants import FIELD_NAMES
 
 class Parser:
     """Parses and expands cron expressions."""
 
-    def __init__(self, cron_string):
+    def __init__(self, cron_string: str):
         self.cron_string = cron_string
         self.parsed_fields = {}
         self.command = None

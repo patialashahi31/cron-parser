@@ -3,7 +3,7 @@ from cron_parser.constants import FIELD_RANGES
 class CronFieldExpander:
     """Expands cron field values into a list of valid times."""
 
-    def __init__(self, field_name, field_value):
+    def __init__(self, field_name: str, field_value: str):
         self.field_name = field_name
         self.field_value = field_value
         self.start, self.end = FIELD_RANGES[field_name]
@@ -19,7 +19,7 @@ class CronFieldExpander:
 
         return sorted(result)
 
-    def _expand_part(self, part):
+    def _expand_part(self, part: str):
         """Expands individual components of the cron field."""
         if "-" in part:
             return self._expand_range(part)
@@ -28,7 +28,7 @@ class CronFieldExpander:
         else:
             return self._expand_single_value(part)
 
-    def _expand_range(self, part):
+    def _expand_range(self, part: str):
         """Handles range values (e.g., 1-5 or 5-20/5)."""
 
         # Check if range includes a step (e.g., 5-20/5)
@@ -49,7 +49,7 @@ class CronFieldExpander:
 
         return range(range_start, range_end + 1, step)
 
-    def _expand_step(self, part):
+    def _expand_step(self, part: str):
         """Handles step values (e.g., */15 or 5-30/5)."""
         step_start, step = part.split("/")
         step = int(step)
@@ -69,7 +69,7 @@ class CronFieldExpander:
             raise ValueError(f"Value {value} out of range for {self.field_name}.")
         return {value}
 
-# Usage Example
-def expand_field(field_value, field_name):
+
+def expand_field(field_value: str, field_name: str):
     """Helper function to expand a cron field using CronFieldExpander."""
     return CronFieldExpander(field_name, field_value).expand()
