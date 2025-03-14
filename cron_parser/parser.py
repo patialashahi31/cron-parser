@@ -12,7 +12,6 @@ class Parser:
         self.command = None
 
     def parse(self):
-        import ipdb; ipdb.set_trace()
         """Parses the cron expression and expands each field."""
         parts = self.cron_string.split()
         print(f"DEBUG: Parsing cron string: {self.cron_string}")
