@@ -14,7 +14,6 @@ class Parser:
     def parse(self):
         """Parses the cron expression and expands each field."""
         parts = self.cron_string.split()
-        print(f"DEBUG: Parsing cron string: {self.cron_string}")
 
         # Validate number of fields
         if len(parts) < 6:
@@ -25,13 +24,10 @@ class Parser:
 
         # Expand each field and print debug info
         for i, field in enumerate(cron_fields):
-            print(f"DEBUG: Expanding {FIELD_NAMES[i]} field: {field}")
             try:
                 expanded = expand_field(field, FIELD_NAMES[i])
-                print(f"DEBUG: Expanded values for {FIELD_NAMES[i]} → {expanded}")
                 self.parsed_fields[FIELD_NAMES[i]] = expanded
             except Exception as e:
-                print(f"❌ ERROR: Invalid cron field '{field}' for {FIELD_NAMES[i]}: {e}")  # Debug
                 raise ValueError(f"Invalid cron field '{field}' for {FIELD_NAMES[i]}: {e}")
 
     def format_output(self):

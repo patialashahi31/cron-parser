@@ -3,7 +3,7 @@ from cron_parser.parser import Parser
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python cron_parser.py '<cron_expression>'")
+        print("Usage: python main.py '<cron_expression>'")
         sys.exit(1)
 
     cron_expression = sys.argv[1]
